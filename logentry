@@ -1,0 +1,119 @@
+#!/bin/python3
+import os
+from datetime import date
+
+# Case
+os.system('clear')
+print("What's the case number?")
+case = input()
+
+
+# Case Topic
+os.system('clear')
+print("""
+What was the problem that needed solving?
+""")
+topic = input()
+
+
+# Method
+os.system('clear')
+print("""
+What did you do to solve this case?
+
+Enter the things you did one at a time.
+Enter an empty line to continue.
+""")
+method = []
+while True:
+    methodItem = input()
+    if methodItem:
+        method.append(methodItem)
+    else:
+        break
+methodText = '\n'.join(method)
+
+
+# The things I learned
+os.system('clear')
+print("""
+What Did You Learn?
+
+Enter the things you learned one at a time.
+Enter an empty line to continue.
+""")
+thingsLearned = []
+while True:
+    learnedItem = input()
+    if learnedItem:
+        thingsLearned.append(learnedItem)
+    else:
+        break
+learnedText = '\n'.join(thingsLearned)
+
+
+# Thoughts
+os.system('clear')
+print("""
+Outline any thoughts you had on the process...
+
+Any follow up tasks/thoughts?
+What could you do to improve this process?
+
+Enter thoughts one at a time.
+Enter an empty line to continue.
+""")
+furtherThoughts = []
+while True:
+    thought = input()
+    if thought:
+        furtherThoughts.append(thought)
+    else:
+        break
+thoughtText = '\n'.join(furtherThoughts)
+
+text = {"Case": case, "Topic": topic, "Method" : methodText, "What I Learned": learnedText,
+        "Thoughts": thoughtText }
+
+
+# Name file with current date
+os.system('clear')
+path = '~/logbook/'
+def get_filename_datetime():
+    # Use current date to get a text file name.
+    return str(date.today()) + "-" + str(topic)+ ".txt"
+name = get_filename_datetime()
+path_to_file = ("/Users/pfleming/logbook/" + name)
+
+
+
+# write info to txt file
+f = open(path_to_file,"a+")
+f.write( str("Case Number: " + case + "\n\n") )
+f.write( str("Problem/Topic:\n" + topic + "\n\n"))
+f.write( str("Method:\n"))
+for methodItem in method:
+    f.write( str(methodItem + "\n") )
+f.write(str("\n"))
+f.write( str("What I Learned:\n"))
+for learnedItem in thingsLearned:
+    f.write( str(learnedItem + "\n") )
+f.write(str("\n"))
+f.write( str("Further Thoughts:\n"))
+for thought in furtherThoughts:
+    f.write( str(thought + "\n") )
+f.write(str("\n"))
+f.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
